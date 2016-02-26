@@ -1,5 +1,9 @@
 export ZSH="$HOME/.dotfiles/oh-my-zsh"
 
+# load alias
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -52,10 +56,17 @@ plugins=(git osx docker python)
 
 # User configuration
 
-export PATH="/Users/ericfourrier/.rbenv/shims:/opt/local/bin:/opt/local/sbin:/Users/ericfourrier/anaconda/bin:/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:/usr/local/bin/"
+export PATH="/Users/ericfourrier/.rbenv/shims:/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:/usr/local/bin/"
 export MONGO_PATH=/usr/local/mongodb
 export PATH=$PATH:$MONGO_PATH/bin
+
+# anaconda
+export ANACONDA_PATH=/Users/ericfourrier/anaconda
+export PATH="$ANACONDA_PATH/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+#npm
+export PATH="$PATH:/usr/local/Cellar/node/5.6.0/libexec/npm/bin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -272,35 +283,9 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
 #   -------------------------------------------------------------------
     httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
 
-#   ---------------------------------------
-#   10.  ALIAS AND ENVIRONNEMT VARIABLE
-#   ---------------------------------------
 
-
-# aws ssh connection alias
-alias awssh='ssh -i /Users/ericfourrier/.ssh/aws_us_west.pem ubuntu@54.183.171.92'
-alias sscraper='ssh root@45.55.2.240'
-alias sraspberry='ssh pi@192.168.1.32'
-alias sdataiku='ssh dataiku@dss4students.cloudapp.net'
-alias go-pp="cd /Users/ericfourrier/Documents/Projet_Python"
-alias go-pr="cd /Users/ericfourrier/Documents/ProjetR"
-
-# Git alias
-alias gs='git status '
-alias ga='git add '
-alias gb='git branch '
-alias gc='git commit'
-alias gd='git diff'
-alias go='git checkout '
-
-
-# chrome shortcut
-alias getgists="open https://gist.github.com/ericfourrier"
-alias getgithub="open https://github.com/"
-# alias compiler clang
-alias cpp11="clang++ -std=c++11 -stdlib=libc++ -Wno-c++98-compat"
 #plugins
-plugins=(git cloudapp node npm bower brew osx extract z)
+# plugins=(git cloudapp node npm bower brew osx extract z)
 
 #lunchy completion
 LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
